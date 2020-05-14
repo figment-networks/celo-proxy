@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package validator;
+
+message Validator {
+  string name = 1;
+  string address = 2;
+}
+
+message GetByHeightRequest {
+  int64 height = 1;
+}
+
+message GetByHeightResponse {
+  repeated Validator validators = 1;
+}
+
+service ValidatorService {
+  rpc GetByHeight(GetByHeightRequest) returns (GetByHeightResponse);
+}
