@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package validator;
+option go_package = ".;validator";
 
 message Validator {
   string name = 1;

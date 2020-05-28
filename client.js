@@ -7,8 +7,12 @@ function main() {
 
   const validatorService = new validatorProto.ValidatorService(url, credentials);
 
-  validatorService.getByHeight({}, (_error, response) => {
-    console.log(response);
+  validatorService.getByHeight({}, (error, response) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(response);
+    }
   });
 }
 

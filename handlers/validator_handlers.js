@@ -1,7 +1,9 @@
+const { InvalidArgumentError } = require('../utils/errors');
+
 /**
  * Get validators by height
  */
-const getByHeight = (kit) => async (call, callback) => {
+async function getByHeight(kit, call) {
   if (call.request.height != 0) {
     var height = call.request.height;
   }
@@ -10,9 +12,9 @@ const getByHeight = (kit) => async (call, callback) => {
     const validatorsWrapper = await kit.contracts.getValidators();
     const validators = await validatorsWrapper.getRegisteredValidators(height);
 
-    callback(null, { validators });
+    return { validators };
   } catch(error) {
-    console.error(error);
+    throw new InvalidArgumentError(error.message);
   }
 }
 
